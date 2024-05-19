@@ -34,7 +34,6 @@ Whenever we need to create a new functionality we create a new "App".
 6.2 Delete the old `app/views.py`
 6.3 Inside `app/views` create:
   - `fn_based_views.py`
-  - `class_based_views.py`
   - `__init__.py`
 6.4 On `fn_based_views.py`, create 
 
@@ -77,3 +76,13 @@ urlpatterns=[
 ```
 
 6.6 Comment out the CSRF middleware in `mysite/settings.py` or import `csrf_exempt` on urls and use in views functions.
+
+6.7 To receive the json data in the endpoint:
+
+```
+import json
+
+---on e.g POST view---
+  body = json.loads(request.body)
+```
+

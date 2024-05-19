@@ -1,14 +1,19 @@
 from django.http import JsonResponse
+import json
+import logging
 
-def get_data(request):
+def get_users(request):
   res = {
     'success': True,
     'message': 'Function based view: GET data'
   }
   return JsonResponse(res)
 
-def create_data(request):
+def create_user(request):
   if request.method == 'POST':
+    body = json.loads(request.body)
+    logging.warning(body)
+
     res = {
       'success': True,
       'message': 'Function based view: CREATE data'
@@ -20,8 +25,11 @@ def create_data(request):
     }
   return JsonResponse(res)
 
-def update_data(request):
+def update_user(request):
   if request.method == 'PUT':
+    body = json.loads(request.body)
+    print("asdasdasd")
+    logging.warning("Oh hai!")
     res = {
       'success': True,
       'message': 'Function based view: UPDATE data'
@@ -33,7 +41,7 @@ def update_data(request):
     }
   return JsonResponse(res)
 
-def delete_data(request):
+def delete_user(request):
   if request.method == 'DELETE':
     res = {
       'success': True,

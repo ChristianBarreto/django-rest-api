@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ecommerce.views import (get_data, create_data, update_data, delete_data)
+from ecommerce.views import (get_users, create_user, update_user, delete_user)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('data/', get_data),
-    path('data/create', create_data),
-    path('data/update', update_data),
-    path('data/delete', delete_data)
+    path('users/', get_users),
+    path('users/create', create_user),
+    path('users/update', update_user),
+    path('users/delete', delete_user)
 ]
