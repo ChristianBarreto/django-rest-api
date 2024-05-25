@@ -17,16 +17,18 @@
 ## 5. Creating an "App" (functionality)
 Whenever we need to create a new functionality we create a new "App".
 
-5.1 `$ python manage.py startapp poll`
-
-
-
-
-----
+5.1 Create an app:
+`$ python manage.py startapp myApp`
 `$ python manage.py migrate`
 `$ python manage.py runserver`
 
-5.1 Include app created in `mysite/settings.py` on `INSTALLED_APPS=[]`
+5.2 Include app created in `mysite/settings.py` on `INSTALLED_APPS=[]`
+
+```
+INSTALLED_APPS = [
+    'myApp.apps.myAppConfig',
+  ...
+```
 
 ## 6. Logging
 Django contains a simple pre configured logging, we just have the import the logging library and execute.
@@ -115,7 +117,7 @@ class User(models.Model):
 class order(models.Model):
   order_name = models.CharField(max_lenght=50)
   timestamp = models.DateTimeField(auto_now_add=True)
-  created_by = models.ForeignKey(Users, on_delete=models.SET_NULL)
+  created_by = models.ForeignKey(User, on_delete=models.CASCADE)
   ...
 ```
 
@@ -124,4 +126,15 @@ class order(models.Model):
 
 8.3 Migrade (create DB based on diff)
 `$ python manage.py migrate`
+
+## 9 Queries
+9.1 Import the model class in your view.
+`from myApp.models import Users`
+
+9.1 Create:
+Instantiate and use methods.
+```
+u = Users(**userData) # spread operator **
+u.save()
+```
 

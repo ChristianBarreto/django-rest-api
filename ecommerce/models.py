@@ -10,17 +10,17 @@ class Users(models.Model):
 
 class Products(models.Model):
   name = models.CharField(max_length=50)
-  value = models.DecimalField(decimal_places=2)
-  created_by = models.ForeignKey(Users, on_delete=models.SET_NULL)
+  value = models.DecimalField(max_digits=10, decimal_places=2)
+  created_by = models.ForeignKey(Users, on_delete=models.CASCADE)
   created_on = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
     return self.name
 
 class Orders(models.Model):
-  order_value = models.DecimalField(decimal_places=2)
-  product = models.ForeignKey(Products, on_delete=models.SET_NULL)
-  created_by = models.ForeignKey(Users, on_delete=models.SET_NULL)
+  order_value = models.DecimalField(max_digits=10, decimal_places=2)
+  product = models.ForeignKey(Products, on_delete=models.CASCADE)
+  created_by = models.ForeignKey(Users, on_delete=models.CASCADE)
   created_on = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):

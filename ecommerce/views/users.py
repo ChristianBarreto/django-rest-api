@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 import json
 import logging
+from ecommerce.models import Users
 
 def get_users(request):
   res = {
@@ -11,8 +12,14 @@ def get_users(request):
 
 def create_user(request):
   if request.method == 'POST':
-    body = json.loads(request.body)
-    logging.warning(body)
+    userData = json.loads(request.body)
+    logging.warning(**userData)
+    # Implementar validação:
+    # Usuário não pode ter o mesmo email
+    # validar tipo dos fields
+    # Retornar os erros corretos ao FE
+    u = Users(**userData)
+    u.save()
 
     res = {
       'success': True,
@@ -28,8 +35,10 @@ def create_user(request):
 def update_user(request):
   if request.method == 'PUT':
     body = json.loads(request.body)
-    print("asdasdasd")
-    logging.warning("Oh hai!")
+    u = Users()
+    u.email(email)
+    u.save()
+
     res = {
       'success': True,
       'message': 'Function based view: UPDATE data'
